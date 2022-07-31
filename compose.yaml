@@ -1,0 +1,14 @@
+services:
+  nginx:
+    container_name: "nginx-${AppName}"
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+     - ./myApp/:/var/www/public/
+     - ./dockerInfra/nginx/conf.d/:/etc/nginx/conf.d/
+  app:
+    container_name: "app-${AppName}"
+    image: php:8-fpm
+    volumes:
+      - ./myApp/:/var/www/public/
